@@ -1,0 +1,3 @@
+{
+    "stockDataURL": "https://{0}.com/sampleData/{1}/get.csv"
+}
