@@ -1,3 +1,5 @@
 {
-    "stockDataURL": "https://{0}.com/sampleData/{1}/get.csv"
+    "stockDataURL": "https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol={0}&resolution=1D&from=1518630200&to={1}&countback=1973&currencyCode=INR",
+    "scanner": "https://chartink.com/screener",
+    "scanningURL": "https://chartink.com/screener/{0}"
 }
