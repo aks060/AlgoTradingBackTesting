@@ -1,5 +1,17 @@
 import json, requests, time
 
+# Functions
+
+def calculateMAMain(pricelist, days=50):
+    sum = 0
+    count = 0
+    for i in pricelist[::-1]:
+        if count >= days:
+            break
+        sum += i[4]
+        count += 1
+    return round(sum / days, 2)
+
 s = requests.session()
 
 def getConfig(key=None)-> json:
@@ -36,5 +48,19 @@ def getStockData(*args):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115.0'
     }
     url = getConfig('stockDataURL').format(*args)
-    return json.loads(s.get(url, headers=header).content.decode())
+    #convert to required format:
+    data = json.loads(s.get(url, headers=header).content.decode())
+    stockTimeLine = []
+    for i in range(0, len(data['t'])):
+        lst = []
+        lst.append(data['t'][i])
+        lst.append(data['o'][i])
+        lst.append(data['h'][i])
+        lst.append(data['l'][i])
+        lst.append(data['c'][i])
+        lst.append(data['v'][i])
+        stockTimeLine.append(lst)
+    return stockTimeLine
+        
 
+# print(getStockData('BSE', str(int(time.time()))))
