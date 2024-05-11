@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-05-07T22:31:18.896Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="oxDN0ZjOjU2umeR_BEZ9" version="24.2.5" type="device">
+<mxfile host="Electron" modified="2024-05-11T06:31:03.061Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="vLC-n3m10MFz1INyD5tD" version="24.2.5" type="device">
   <diagram name="Page-1" id="e9noU0tgT8A2AjZy8W8k">
     <mxGraphModel dx="1877" dy="-452" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -25,7 +25,7 @@
         <mxCell id="C0JT5Z0AJhmFRIDvKPrn-11" value="&lt;h2&gt;StrategyUtilsFunction&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="310" y="1733" width="400" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-12" value="&lt;div&gt;1. static utils function for stategies&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-12" value="&lt;div&gt;1. Static utils function for stategies&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
           <mxGeometry x="310" y="1773" width="200" height="140" as="geometry" />
         </mxCell>
         <mxCell id="C0JT5Z0AJhmFRIDvKPrn-13" value="&lt;div style=&quot;&quot;&gt;1. StockData&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
@@ -34,7 +34,7 @@
         <mxCell id="C0JT5Z0AJhmFRIDvKPrn-14" value="&lt;h2&gt;Config&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="310" y="1522" width="400" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-15" value="&lt;div&gt;1. Read config file from the disk&lt;/div&gt;&lt;div&gt;2. Create database and provide the connection object&lt;/div&gt;&lt;div&gt;3. Create BackTesting Database&lt;/div&gt;&lt;div&gt;4. Create PaytmSession&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-15" value="&lt;div&gt;1. Read config file from the disk&lt;/div&gt;&lt;div&gt;2. Create database and provide the connection object&lt;/div&gt;&lt;div&gt;3. Create BackTesting Database&lt;/div&gt;&lt;div&gt;4. Create Broker Session&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
           <mxGeometry x="310" y="1563" width="200" height="140" as="geometry" />
         </mxCell>
         <mxCell id="C0JT5Z0AJhmFRIDvKPrn-16" value="&lt;div style=&quot;&quot;&gt;Config.json&lt;/div&gt;&lt;div style=&quot;&quot;&gt;Secret.json&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
