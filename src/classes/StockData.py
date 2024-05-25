@@ -1,5 +1,5 @@
 import requests, datetime, json
-from Config import Config
+from classes.Config import Config
 
 class StockData():
     isBackTesting=False
@@ -70,14 +70,14 @@ class StockData():
 
         return stockData
     
-    def getStockDataFromMoneyControl(self, *args):
+    def getStockDataFromApi(self, *args):
         '''
             Fetch Stock CSV data from internet, based on url format provided in config file
             :args arguments to pass in url
             :returns dictionary data {'s': 'ok', 't': [..], 'o': [..], 'h': [..], 'l': [..], 'c':[..], 'v':[..]} -> status, time, open, high, low, close, volume
         '''
         global s
-        url = Config.Config.getConfigValues('stockDataURL').format(*args)
+        url = Config.getConfigValues('stockDataURL').format(*args)
         #convert to required format:
         data = json.loads(s.get(url, headers=self.__requestHeader).content.decode())
         stockTimeLine = []

@@ -8,9 +8,9 @@ class Strategy():
     __PLHistory = list()
     __aditionalParameters = dict()
     
-    def __init__(self, strategyName:str, initialBalance:float) -> None:
+    def __init__(self, strategyName:str, initialBalance) -> None:
         self.__strategyName = strategyName
-        self.__initialBalance = initialBalance
+        self.__initialBalance = float(initialBalance)
         
     def _setBalance(self, newBalance: float):
         self.__currentBalance = newBalance
@@ -41,8 +41,7 @@ class Strategy():
     def triggerSellStock(self, *args):
         raise Exception("Method not implemented, Please overwrite this method")
         pass
-    
-    
+
 class SampleStrategy(Strategy):
     
     def __init__(self, strategyName: str, initialBalance: float) -> None:
@@ -59,3 +58,6 @@ class SampleStrategy(Strategy):
     
     def triggerSellStock(self, *args):
         pass
+    
+    
+registeredStrategy = {'SampleStrategy' : SampleStrategy}

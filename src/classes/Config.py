@@ -1,4 +1,5 @@
 import json, sqlite3, os, sys, requests
+
 class Config():
     '''
     Config class to set configuration files, secret file, initializing database and brocker session.
