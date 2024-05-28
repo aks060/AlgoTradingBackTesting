@@ -1,0 +1,142 @@
+<mxfile host="Electron" modified="2024-05-11T06:31:03.061Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="vLC-n3m10MFz1INyD5tD" version="24.2.5" type="device">
+  <diagram name="Page-1" id="e9noU0tgT8A2AjZy8W8k">
+    <mxGraphModel dx="1877" dy="-452" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="WAfYHwyZqM98jTy3CkZY-1" value="&lt;h2&gt;RunStrategy&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-150" y="1313" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="WAfYHwyZqM98jTy3CkZY-3" value="&lt;span style=&quot;background-color: initial;&quot;&gt;1. Takes required Input from the user&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;2. Run Strategy&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;3. Print the command to Sell/Buy&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="-150" y="1353" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="WAfYHwyZqM98jTy3CkZY-4" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;1. StockData&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial; text-align: center;&quot;&gt;2. Strategy&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="50" y="1353" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="WAfYHwyZqM98jTy3CkZY-7" value="&lt;h2&gt;StockData&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-150" y="1522" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="WAfYHwyZqM98jTy3CkZY-8" value="&lt;div&gt;1. Fetch Stock Data from Server&lt;/div&gt;&lt;div&gt;2. Is BackTesting?&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="-150" y="1562" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="WAfYHwyZqM98jTy3CkZY-9" value="&lt;div style=&quot;&quot;&gt;1. Config&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="50" y="1562" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-11" value="&lt;h2&gt;StrategyUtilsFunction&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="310" y="1733" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-12" value="&lt;div&gt;1. Static utils function for stategies&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="310" y="1773" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-13" value="&lt;div style=&quot;&quot;&gt;1. StockData&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="510" y="1773" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-14" value="&lt;h2&gt;Config&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="310" y="1522" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-15" value="&lt;div&gt;1. Read config file from the disk&lt;/div&gt;&lt;div&gt;2. Create database and provide the connection object&lt;/div&gt;&lt;div&gt;3. Create BackTesting Database&lt;/div&gt;&lt;div&gt;4. Create Broker Session&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="310" y="1563" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-16" value="&lt;div style=&quot;&quot;&gt;Config.json&lt;/div&gt;&lt;div style=&quot;&quot;&gt;Secret.json&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="510" y="1563" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-17" value="&lt;h2&gt;Strategy&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-150" y="1733" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-18" value="&lt;span style=&quot;background-color: initial;&quot;&gt;1. Takes required Input from the user&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;2. Configure Parameter&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;3. Select Stocks&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;4. Trigger Buy for the Stocks&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;5. Trigger Sell for the Stocks&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="-150" y="1774" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="C0JT5Z0AJhmFRIDvKPrn-19" value="&lt;div style=&quot;&quot;&gt;1. StrategyUtilsFunction&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="50" y="1773" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-4" value="&lt;h2&gt;RunStrategyPrivate&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-684" y="1322" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-5" value="&lt;span style=&quot;background-color: initial;&quot;&gt;1. Extend RunStrategy&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;2. Override execution function as per requirement&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;3. Add Alerts&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;4. Add Generate Report Functionality&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="-684" y="1362" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="nOrl2CEjVWmQWdmc55-g-6" target="WAfYHwyZqM98jTy3CkZY-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-6" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;1. RunStrategy&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;2.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;text-align: center; background-color: initial;&quot;&gt;AlertNotifications (Private Class)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;text-align: center; background-color: initial;&quot;&gt;3. BrokerAPIs (Private Class)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;text-align: center; background-color: initial;&quot;&gt;4. ReportGeneration (Private Class)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;text-align: center; background-color: initial;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;. Strategy&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="-484" y="1362" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-9" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-180" y="1233" as="sourcePoint" />
+            <mxPoint x="750" y="1233" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-10" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-180" y="2153" as="sourcePoint" />
+            <mxPoint x="-180" y="1233" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-11" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-180" y="2153" as="sourcePoint" />
+            <mxPoint x="750" y="2153" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-12" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="2153" as="sourcePoint" />
+            <mxPoint x="750" y="1233" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-13" value="AlgoTradingBackTesting" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="160" y="1233" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-14" value="&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;h2&gt;BackTestStrategy&lt;/h2&gt;&lt;/blockquote&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="310" y="1313" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-15" value="&lt;span style=&quot;background-color: initial;&quot;&gt;Set BackTesting as True&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;1. Takes required Input from the user&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;2. Run strategy with multiple parameters&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;3. Compare the report and predict best strategy&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;4. Save logs and reports for each test for future use&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="310" y="1353" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-16" value="&lt;div style=&quot;&quot;&gt;1. RunStrategy&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="510" y="1353" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-17" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-760" y="1200" as="sourcePoint" />
+            <mxPoint x="800" y="1200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-18" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-760" y="2201.3912831182065" as="sourcePoint" />
+            <mxPoint x="-760" y="1200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-19" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-760" y="2200" as="sourcePoint" />
+            <mxPoint x="801.3913892663044" y="2200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-20" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="800" y="2200" as="sourcePoint" />
+            <mxPoint x="800" y="1200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nOrl2CEjVWmQWdmc55-g-21" value="&lt;font style=&quot;font-size: 25px;&quot;&gt;AlgoTradingPrivate&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-710" y="1218" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="12XFGVl3VL-rbH7WwKTc-1" value="&lt;h2&gt;Class Name&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="-736" y="2000" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="12XFGVl3VL-rbH7WwKTc-2" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;Responsibility&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="-736" y="2040" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="12XFGVl3VL-rbH7WwKTc-3" value="&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;Collaborations&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="-536" y="2040" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="12XFGVl3VL-rbH7WwKTc-4" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;CRC (Class Responsibility Collaboration) Card&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-736" y="1953" width="400" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
