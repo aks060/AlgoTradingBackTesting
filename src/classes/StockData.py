@@ -1,24 +1,27 @@
 import requests, datetime, json
-from classes.Config import Config
+from Config import Config
+from DBConnector import *
+import tempfile, os, time, pickle
 
 class StockData():
-    isBackTesting=False
+    __isBackTesting=False
     __config = list()
     __requestHeader = {
         'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0',
         'Cache-Control' : 'no-cache, must-revalidate'
     }
+    _s = requests.session()    
     
-    
-    def __new__(cls, config=None):
+    def __new__(cls, config=None, isBackTesting=False):
         if not hasattr(cls, 'instance'):
             cls.instance = super(StockData, cls).__new__(cls)
         return cls.instance
     
-    def __init__(self, config=None):
+    def __init__(self, config=None, isBackTesting=False):
         #Overwritting config values
         if config is not None:
             self.__config = config
+        self.__isBackTesting = isBackTesting
             
     def __splitDateRange(self, startDate, endDate, intervalDays=70) -> list:
         '''
@@ -70,17 +73,14 @@ class StockData():
 
         return stockData
     
-    def getStockDataFromApi(self, *args):
-        '''
-            Fetch Stock CSV data from internet, based on url format provided in config file
-            :args arguments to pass in url
-            :returns dictionary data {'s': 'ok', 't': [..], 'o': [..], 'h': [..], 'l': [..], 'c':[..], 'v':[..]} -> status, time, open, high, low, close, volume
-        '''
+    def __getStockDataFromApi_Live(self, *args):
         global s
         url = Config.getConfigValues('stockDataURL').format(*args)
         #convert to required format:
-        data = json.loads(s.get(url, headers=self.__requestHeader).content.decode())
+        data = json.loads(self._s.get(url, headers=self.__requestHeader).content.decode())
         stockTimeLine = []
+        if data['s'] != 'ok':
+            return stockTimeLine
         for i in range(0, len(data['t'])):
             lst = []
             lst.append(data['t'][i])
@@ -91,5 +91,76 @@ class StockData():
             lst.append(data['v'][i])
             stockTimeLine.append(lst)
         return stockTimeLine
-            
+    
+    def __getNearestIndex(self, data, indexVal):
+        for i in range(0, len(data)):
+            if data[i] == indexVal:
+                return i
+            elif data[i] > indexVal:
+                return i-1
+        return len(data)-1
         
+    def getStockDataFromApi(self, *args):
+        '''
+            Fetch Stock CSV data from internet, based on url format provided in config file
+            :args arguments to pass in url
+            :returns dictionary data {'s': 'ok', 't': [..], 'o': [..], 'h': [..], 'l': [..], 'c':[..], 'v':[..]} -> status, time, open, high, low, close, volume
+        '''
+        global s
+        cacheEnabled = True
+        if 'cacheEnabled' in args[-1]:
+            cacheEnabled = args[-1]['cacheEnabled']
+        
+        cacheFound = False
+        
+        if cacheEnabled:
+            symbol = args[0]
+            dirPath = tempfile.gettempdir()
+            cacheFile = dirPath+'/AlgoTradingBackTesting/'+symbol+'_'+args[2]+'.pk'
+            if os.path.exists(cacheFile):
+                cFile = open(cacheFile, 'rb')
+                cacheFound = True
+            else:
+                cFile = open(cacheFile, 'wb')
+        
+            if cacheFound:
+                result = pickle.load(cFile)
+                timeInd = self.__getNearestIndex(result['index'], args[1])
+                finalResult = result['data'][:timeInd+1]
+                return finalResult
+            else:
+                result = self.__getStockDataFromApi_Live(args[0], int(time.time()), args[2])
+                index = []
+                for i in result:
+                    index.append(i[0])
+                dumpData = {
+                    'data': result,
+                    'index': index
+                }
+                timeInd = self.__getNearestIndex(index, args[1])
+                finalResult = result[:timeInd+1]
+                pickle.dump(dumpData, cFile)
+                cFile.close()
+                return finalResult
+        else:
+            return self.__getStockDataFromApi_Live(args)
+                
+    
+    def getStocksFromChartInk(self, scan_clause):
+        tmpSession = requests.session()
+        res = tmpSession.get(Config.getConfigValues('scanner')).content.decode()
+        csrf_str = 'csrf-token" content="'
+        ind = res.find(csrf_str)+len(csrf_str)
+        csrf_token = ''
+        for i in range(ind, ind+100):
+            if res[i] == '"':
+                break
+            csrf_token += res[i]
+    
+        screener_head = {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            'X-Csrf-Token': csrf_token
+        }
+        urlString = 'process?scan_clause='+scan_clause
+        res = json.loads(tmpSession.post(Config.getConfigValues('scanningURL').format(urlString,), headers=screener_head).content.decode())
+        return res
