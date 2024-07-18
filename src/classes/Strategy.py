@@ -225,7 +225,11 @@ class WeekHigh52(Strategy):
         if len(args)>0:
             data = args[0]
         strategyTxn = self._dbConnector.executeRawQuery('''
-        SELECT st.*, s.* FROM stocksTxn st INNER JOIN stocks s ON st.stockId=s.id WHERE st.status='Hold' AND st.holdingStatus='B' AND st.strategy='''+str(self._strategyId), True)[1]
+        SELECT st.id, st.stockId, st.txnDate, st.txnTime, st.holdingStatus, 
+        st.price, st.quantity, st.strategy, st.stopLoss, st.stopLossPercent,
+        st.targetPrice, st.targetPercent, st.status, st.enable, st.syncStatus, 
+        s.name, s.nseCode
+        FROM stocksTxn st INNER JOIN stocks s ON st.stockId=s.id WHERE st.status='Hold' AND st.holdingStatus='B' AND st.strategy='''+str(self._strategyId), True)[1]
         for i in strategyTxn:
             txnId = i[0]
             nseCode = i[16]

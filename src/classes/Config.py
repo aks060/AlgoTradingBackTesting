@@ -5,8 +5,8 @@ class Config():
     Config class to set configuration files, secret file, initializing database and brocker session.
     \nInstantiation of this class is restricted.
     '''
-    __configFilePath=os.path.dirname(os.path.abspath(sys.argv[0]))+'\\'+"config.json"
-    __secretFilePath=os.path.dirname(os.path.abspath(sys.argv[0]))+'\\'+"secret.json"
+    __configFilePath=os.path.dirname(os.path.abspath(sys.argv[0]))+'/'+"config.json"
+    __secretFilePath=os.path.dirname(os.path.abspath(sys.argv[0]))+'/'+"secret.json"
     __stockDB = 'stocks.db'
     __backtestingDB = 'backtestingStocks.db'
     __configValues = {}

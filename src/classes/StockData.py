@@ -115,14 +115,15 @@ class StockData():
         
         if cacheEnabled:
             symbol = args[0]
-            dirPath = tempfile.gettempdir()
-            cacheFile = dirPath+'/AlgoTradingBackTesting/'+symbol+'_'+args[2]+'.pk'
+            dirPath = tempfile.gettempdir()+'/AlgoTradingBackTesting/'
+            cacheFile = dirPath+symbol+'_'+args[2]+'.pk'
             if os.path.exists(cacheFile):
                 cFile = open(cacheFile, 'rb')
                 cacheFound = True
             else:
-                cFile = open(cacheFile, 'wb')
-        
+                if not os.path.exists(dirPath):
+                    os.mkdir(dirPath)
+                cFile = open(cacheFile, 'wb+')
             if cacheFound:
                 result = pickle.load(cFile)
                 timeInd = self.__getNearestIndex(result['index'], args[1])
