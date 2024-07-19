@@ -52,7 +52,7 @@ class DBConnector():
         targetPercent float,
         status string,
         enable Boolean DEFAULT TRUE,
-        syncStatus Boolean DEFAULT TRUE,
+        syncStatus Boolean DEFAULT FALSE,
         FOREIGN KEY(stockId) REFERENCES stocks(id),
   		FOREIGN KEY(strategy) REFERENCES strategy(id),
   		UNIQUE(stockId, txnTime, holdingStatus, price, quantity, strategy, status)
