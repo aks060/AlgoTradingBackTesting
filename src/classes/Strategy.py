@@ -165,7 +165,7 @@ class WeekHigh52(Strategy):
             self._maxBuyLimitPerStock = configParam['maxBuyLimitPerStock']
     
     def selectStocks(self, *args):
-            weekhigh52 = self._stockData.getStocksFromChartInk("(+{cash}+(+weekly+max(+52+,+weekly+high+)+<=+latest+low+and+market+cap+>=+"+str(self._marketCap)+"+)+)+")
+            weekhigh52 = self._stockData.getStocksFromChartInk("(+{cash}+(+latest+close+>+1+day+ago+max(+260+,+latest+high+)+and+market+cap+>=+"+str(self._marketCap)+"+)+)+")
             self._stocksList = weekhigh52['data']
         
     def getOnHoldTransactions(self):
