@@ -16,6 +16,21 @@ class DBConnector():
         DBConnector._selectedDBCursor = dbObjects[0]
         DBConnector._selectedDB = dbObjects[1]
         self.__initDB()
+        
+    def resetDB(self, skipConfirm = False):
+        if not skipConfirm:
+            confirm = input('Are you sure you want to reset DB? (Y): ')
+            if confirm == 'Y':
+                pass
+            else:
+                print('DB Reset aborted..')
+                return
+        cursor = self._selectedDBCursor
+        cursor.execute('''DROP TABLE stocksTxn''')
+        cursor.execute('''DROP TABLE strategy''')
+        cursor.execute('''DROP TABLE stocks''')
+        self._selectedDB.commit()
+        self.__initDB()  
             
     def __initDB(self):
         cursor = self._selectedDBCursor
@@ -60,26 +75,36 @@ class DBConnector():
         
         self._selectedDB.commit()
         
+    def addNewTxn(self, stockName, nseCode, holdingStatus:str, price:float, quantity:int, stopLossPercent:float, targetPercent:float, status:str, strategy=0, txnTime=None, stopLoss:float = None, targetPrice:float= None, syncStatus=0):
+        stockId = self.addStocks(stockName, nseCode)
+        if stopLoss is None:
+            stopLoss = price - (stopLossPercent/100)*price
+        if targetPrice is None:
+            targetPrice = price + (targetPercent/100)*price
+        self.addStocksTxn(stockId, holdingStatus, price, quantity, stopLoss, stopLossPercent, targetPrice, targetPercent, status, strategy, txnTime, syncStatus)
+        
+    
     def addStocks(self, name:str, nseCode:str):
         query = "INSERT OR IGNORE INTO stocks (name, nseCode) VALUES (?, ?)"
         response = self._selectedDBCursor.execute(query, (name, nseCode,))    
         self._selectedDB.commit() 
-        return response
+        stockID = self.selectDataFromTable('stocks', columnName='id', whereClause='nseCode="'+nseCode+'"')[0][0]
+        return stockID
         
-    def addStocksTxn(self, stockId:int, holdingStatus:str, price:float, quantity:int, stopLoss: float, stopLossPercent:float, targetPrice:float, targetPercent:float, status:str, strategy=0, txnTime=None):
+    def addStocksTxn(self, stockId:int, holdingStatus:str, price:float, quantity:int, stopLoss: float, stopLossPercent:float, targetPrice:float, targetPercent:float, status:str, strategy=0, txnTime=None, syncStatus=0):
         if txnTime is None:
             txnTime = int(time.time())        
-        query = '''INSERT OR IGNORE INTO stocksTxn (stockId,holdingStatus,price,quantity,strategy,stopLoss,stopLossPercent,targetPrice,targetPercent,status,txnTime) 
-        VALUES (?,?,?,?,?,?,?,?,?,?,?)
+        query = '''INSERT OR IGNORE INTO stocksTxn (stockId,holdingStatus,price,quantity,strategy,stopLoss,stopLossPercent,targetPrice,targetPercent,status,txnTime,syncStatus) 
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
         '''
-        self._selectedDBCursor.execute(query, (stockId,holdingStatus,price,quantity,strategy,stopLoss,stopLossPercent,targetPrice,targetPercent,status, txnTime))
+        self._selectedDBCursor.execute(query, (stockId,holdingStatus,price,quantity,strategy,stopLoss,stopLossPercent,targetPrice,targetPercent,status, txnTime, syncStatus))
         self._selectedDB.commit()
         
-    def selectDataFromTable(self, table, whereClause=None):
-        query = '''SELECT * FROM {0} '''
+    def selectDataFromTable(self, table, whereClause=None, columnName='*'):
+        query = '''SELECT {0} FROM {1} '''
         if whereClause is not None and whereClause!='':
             query += '''WHERE '''+whereClause
-        query = query.format(table)
+        query = query.format(columnName, table)
         self._selectedDBCursor.execute(query)
         resp = self._selectedDBCursor.fetchall()
         return resp

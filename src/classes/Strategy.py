@@ -192,6 +192,8 @@ class WeekHigh52(Strategy):
             name = i['name']
             price = i['close']
             qnt = 1
+            if 'quantity' in i:
+                qnt = i['quantity']
             if 'currentTime' in i:
                 currentTime = i['currentTime']
             if float(price) < self._maxBuyLimitPerStock and self._currentBalance>0:
@@ -249,6 +251,7 @@ class WeekHigh52(Strategy):
             latestCloseData = self._stockData.getStockDataFromApi(nseCode, currentTime, '1D')
             if len(latestCloseData) ==0:
                 latestClose = 0
+                print("Error in getting latest close value from API..")
                 #Error
             else:
                 latestClose = latestCloseData[-1][4]
