@@ -14,11 +14,11 @@ class StrategyUtils():
         return round(sum / days, 2)
     
     @staticmethod
-    def getLow(symbol:str, interval:int, intervalType:str, currentTime=None):
+    def getLow(symbol:str, interval:int, intervalType:str, currentTime=None, cacheEnabled = True):
         sd = StockData()
         if currentTime is None:
             currentTime = int(time.time())
-        stockData = sd.getStockDataFromApi(symbol, currentTime, intervalType)
+        stockData = sd.getStockDataFromApi(symbol, currentTime, intervalType, {'cacheEnabled': cacheEnabled})
         if len(stockData) < interval:
             return -1
         lowData = stockData[-interval][3]

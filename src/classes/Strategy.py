@@ -247,14 +247,20 @@ class WeekHigh52(Strategy):
                 currentTime = data['currentTime']
             else:
                 currentTime = int(time.time())
-            get10WeekLow = StrategyUtils.getLow(nseCode, 10, '1W', currentTime)
-            latestCloseData = self._stockData.getStockDataFromApi(nseCode, currentTime, '1D')
-            if len(latestCloseData) ==0:
-                latestClose = 0
-                print("Error in getting latest close value from API..")
-                #Error
+            get10WeekLow = StrategyUtils.getLow(nseCode, 10, '1W', currentTime, False)
+            
+            # Input from arguments
+            if data is not None and 'latestClose' in data:
+                latestClose = float(data['latestClose'][nseCode])
             else:
-                latestClose = latestCloseData[-1][4]
+                latestCloseData = self._stockData.getStockDataFromApi(nseCode, currentTime, '1D', *args)
+                if len(latestCloseData) ==0:
+                    latestClose = 0
+                    print("Error in getting latest close value from API..")
+                    #Error
+                else:
+                    latestClose = latestCloseData[-1][4]
+            
             if currentStopLoss >= latestClose:
                 print("Stop Loss already triggered")
                 self._currentBalance+=(currentStopLoss*qnt)

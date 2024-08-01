@@ -75,7 +75,10 @@ class StockData():
     
     def __getStockDataFromApi_Live(self, *args):
         global s
-        url = Config.getConfigValues('stockDataURL').format(*args)
+        symbol = args[0][0]
+        to = args[0][1]
+        resolution = args[0][2]
+        url = Config.getConfigValues('stockDataURL').format(symbol, to, resolution)
         #convert to required format:
         data = json.loads(self._s.get(url, headers=self.__requestHeader).content.decode())
         stockTimeLine = []
