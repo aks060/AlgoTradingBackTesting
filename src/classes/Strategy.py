@@ -257,6 +257,7 @@ class WeekHigh52(Strategy):
                 if len(latestCloseData) ==0:
                     latestClose = 0
                     print("Error in getting latest close value from API..")
+                    raise Exception("Error in getting latest close value from API..")
                     #Error
                 else:
                     latestClose = latestCloseData[-1][4]
