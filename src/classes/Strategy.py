@@ -196,10 +196,10 @@ class WeekHigh52(Strategy):
                 qnt = i['quantity']
             if 'currentTime' in i:
                 currentTime = i['currentTime']
-            if float(price) < self._maxBuyLimitPerStock and self._currentBalance>0:
+            if float(price) < self._maxBuyLimitPerStock and self._currentBalance>0 and float(price) <= self._currentBalance:
                 print("Purchasing Stock...")
                 if self._configParams is not None and 'buyMaxLimit' in self._configParams and self._configParams['buyMaxLimit']:
-                    qnt = int(self._maxBuyLimitPerStock/price)
+                    qnt = min(int(self._maxBuyLimitPerStock/price), int(self._currentBalance/price))
                 cost = qnt*price
                 self._currentBalance -= cost
                 stopLoss = price - (self._stopLossPercent/100)*price

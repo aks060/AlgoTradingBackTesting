@@ -40,6 +40,12 @@ class DBConnector():
         nseCode string UNIQUE
         );''')
         
+        cursor.execute('''CREATE TABLE IF NOT EXISTS config (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            key string UNIQUE,
+            value string
+        );''')
+        
         cursor.execute('''DROP TABLE IF EXISTS strategy;''')
         cursor.execute('''
         CREATE TABLE strategy (
@@ -117,3 +123,17 @@ class DBConnector():
         else:
             self._selectedDB.commit()
         return (queryResponse)
+    
+    def getConfig(self, key):
+        result = self.selectDataFromTable('config', 'key="'+key+'"', 'value')
+        if len(result) > 0:
+            return result[0][0]
+        else:
+            return None
+    
+    def setConfig(self, key, value):
+        existingValue = self.getConfig(key)
+        if existingValue is not None:
+            self.executeRawQuery('UPDATE config SET value="'+str(value)+'" WHERE key="'+key+'"')
+        else:
+            self.executeRawQuery('INSERT INTO config (key, value) VALUES("'+key+'", "'+str(value)+'")')
