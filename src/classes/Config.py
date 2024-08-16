@@ -33,7 +33,10 @@ class Config():
     @staticmethod
     def getConfigValues(index):
         Config.__loadConfigurations()
-        return Config.__configValues[index]
+        if index not in Config.__configValues:
+            return None
+        else:
+            return Config.__configValues[index]
     
     @staticmethod
     def getDBCursors(isBackTesting = False):
