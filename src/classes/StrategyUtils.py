@@ -21,7 +21,9 @@ class StrategyUtils():
         stockData = sd.getStockDataFromApi(symbol, currentTime, intervalType, {'cacheEnabled': cacheEnabled})
         if len(stockData) < interval:
             return -1
-        lowData = stockData[-interval][3]
+        lowData = stockData[-1][3]
+        for i in range(1, interval+1):
+            lowData = min(lowData, stockData[-i][3])
         return lowData
     
     @staticmethod
