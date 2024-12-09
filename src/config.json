@@ -1,4 +1,5 @@
 {
     "Comments": "This file contains sample config data. Please replace it with your own APIs/data to use",
-    "stockDataURL": "https://testAPI.com/testingStockData?symbol={0}&resolution=1D&from={1}&to={2}"
+    "stockDataURL": "https://testAPI.com/testingStockData?symbol={0}&from={1}&to={2}&resolution=1D",
+    "scanningURL": "https://chartink.com/screener/{0}"
 }

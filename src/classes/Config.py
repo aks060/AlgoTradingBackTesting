@@ -1,22 +1,26 @@
-import json, sqlite3, os, sys, requests
+import json, sqlite3, os, sys, requests, copy
 
 class Config():
     '''
     Config class to set configuration files, secret file, initializing database and brocker session.
     \nInstantiation of this class is restricted.
     '''
-    __configFilePath=os.path.dirname(os.path.abspath(sys.argv[0]))+'\\'+"config.json"
-    __secretFilePath=os.path.dirname(os.path.abspath(sys.argv[0]))+'\\'+"secret.json"
+    __configFilePath=os.path.dirname(os.path.abspath(sys.argv[0]))+'/'+"config.json"
+    __secretFilePath=os.path.dirname(os.path.abspath(sys.argv[0]))+'/'+"secret.json"
     __stockDB = 'stocks.db'
     __backtestingDB = 'backtestingStocks.db'
     __configValues = {}
     __secretValues = {}
-    __dbCursor = list()
+    __dbConnections = list()
     __brokerSession = requests.session()
     
     # To restrict object creation, self is removed from parameter
     def __init__() -> None:
         raise Exception("Object cannot be created for Config class")
+    
+    @staticmethod
+    def setupEnvironment(isBacktesting = False):
+        return (copy.deepcopy(Config.getBrokerSession()), Config.getDBCursors(isBacktesting))
     
     @staticmethod
     def setConfigFiles(configFilePath=None, secretFilePath=None):
@@ -29,12 +33,18 @@ class Config():
     @staticmethod
     def getConfigValues(index):
         Config.__loadConfigurations()
-        return Config.__configValues[index]
+        if index not in Config.__configValues:
+            return None
+        else:
+            return Config.__configValues[index]
     
     @staticmethod
-    def getDBCursors():
+    def getDBCursors(isBackTesting = False):
         Config.__initDBConnections()
-        return Config.__dbCursor
+        if not isBackTesting:
+            return (Config.__dbConnections[0].cursor(), Config.__dbConnections[0])
+        else:
+            return (Config.__dbConnections[1].cursor(), Config.__dbConnections[1])
     
     @staticmethod
     def __loadConfigurations():
@@ -48,7 +58,7 @@ class Config():
     def __initDBConnections():
         stockDB = sqlite3.connect(Config.__stockDB)
         backTestDB = sqlite3.connect(Config.__backtestingDB)
-        Config.__dbCursor = [stockDB.cursor, backTestDB.cursor]
+        Config.__dbConnections = [stockDB, backTestDB]
         
     @staticmethod
     def getBrokerSession():
