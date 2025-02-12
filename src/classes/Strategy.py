@@ -197,7 +197,6 @@ class WeekHigh52(Strategy):
             if 'currentTime' in i:
                 currentTime = i['currentTime']
             if float(price) < self._maxBuyLimitPerStock and self._currentBalance>0 and float(price) <= self._currentBalance:
-                print("Purchasing Stock...")
                 if self._configParams is not None and 'buyMaxLimit' in self._configParams and self._configParams['buyMaxLimit']:
                     qnt = min(int(self._maxBuyLimitPerStock/price), int(self._currentBalance/price))
                 cost = qnt*price
@@ -209,6 +208,7 @@ class WeekHigh52(Strategy):
                 if nseCode not in self._txnDBEntry:
                     self._txnDBEntry[nseCode] = list()
                 self._txnDBEntry[nseCode].append(txnId)
+                print("Purchasing Stock "+nseCode+f" (Buying Price: {price}, Stop Loss: {stopLoss})...")
             elif self._currentBalance <= 0:
                 print("BALANCE IS OVER.. Cannot BUY MORE STOCKS")
                         
@@ -226,6 +226,8 @@ class WeekHigh52(Strategy):
         data = None
         if len(args)>0:
             data = args[0]
+        else:
+            data= {"cacheEnabled": self._configParams['useCache']}
         strategyTxn = self._dbConnector.executeRawQuery('''
         SELECT st.id, st.stockId, st.txnDate, st.txnTime, st.holdingStatus, 
         st.price, st.quantity, st.strategy, st.stopLoss, st.stopLossPercent,
@@ -253,15 +255,16 @@ class WeekHigh52(Strategy):
             if data is not None and 'latestClose' in data:
                 latestClose = float(data['latestClose'][nseCode])
             else:
-                latestCloseData = self._stockData.getStockDataFromApi(nseCode, currentTime, '1D', *args)
+                latestCloseData = self._stockData.getStockDataFromApi(nseCode, currentTime, '1D', data)
                 if len(latestCloseData) ==0:
                     latestClose = 0
-                    print("Error in getting latest close value from API..")
-                    raise Exception("Error in getting latest close value from API..")
+                    print("Error: Error in getting latest close value of "+nseCode+" from API..")
+                    # raise Exception("Error in getting latest close value from API..")
                     #Error
                 else:
                     latestClose = latestCloseData[-1][4]
             
+            print("Stop Loss for "+nseCode+" set to: ")
             if currentStopLoss >= latestClose:
                 print("Stop Loss already triggered")
                 self._currentBalance+=(currentStopLoss*qnt)
